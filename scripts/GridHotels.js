@@ -9,10 +9,14 @@ class GridHotels extends Component {
     };
   }
 
+  /** Ciclo de vida empleado al momento de la actualización de los filtros */
+
   componentDidUpdate(prevProps) {
     if (prevProps.filter !== this.props.filter) {
       console.log(this.props.filter)
       let hotelsFilter = hotelsData;
+      if (this.props.filter.startDate) {        
+      }
       if (this.props.filter.country) {
         hotelsFilter = hotelsFilter.filter((element) => element.country === this.props.filter.country);
       }

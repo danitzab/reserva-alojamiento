@@ -41,7 +41,11 @@ input[type='date']::-webkit-calendar-picker-indicator {
 .header-title{
   margin-top: 30px;
 }
-
 .text-white {
   height: 170px;
 }
+
+/* .center {
+  padding-right: 81px;
+  padding-left: 81px;
+} */

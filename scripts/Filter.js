@@ -31,20 +31,27 @@ class Filter extends Component {
 
   handleGlobalChange = (e) => {
     console.log(e.target.name, ' - ', e.target.value);
-    this.setState({ [e.target.name]: e.target.value }, this.handleFilter);    
+    this.setState({ [e.target.name]: e.target.value }, this.handleFilter);
   };
+
+  /**
+   * Método para filtrar: 
+   * 1.convertir el startDate y el endDate de string a fecha.
+   * 2.Filtar las ciudades al momento de ser seleccionadas. 
+   * 3.Filtarr los precios al seleccionarlos y convertirlo por elmétodo parseInt de string a número.
+   * 4.Filtar las habitaciones al ser
+   */
 
   handleFilter = () => {
     this.props.handleFilter({
-      startDate: this.state.startDate,
-      endDate: this.state.endDate,
+      startDate: new Date(`${this.state.startDate}T00:00:00`),
+      endDate: new Date(`${this.state.endDate}T00:00:00`),
       country: this.state.country,
       price: parseInt(this.state.price, 10),
       room: this.state.room,
     });
   };
 
-  
   render() {
     const { search } = this.state;
 
@@ -71,7 +78,7 @@ class Filter extends Component {
                     className="form-control mr-sm-5 my-1"
                     id="startDate"
                     name="startDate"
-                    onChange={this.handleGlobalChange}           
+                    onChange={this.handleGlobalChange}
                   />
                 </div>
               </div>
@@ -152,12 +159,10 @@ class Filter extends Component {
                 </div>
                 <select className="custom-select icon-filter1 mr-sm-5 my-0" id="room" name="room" onChange={this.handleGlobalChange}>
                   <option value="0">Cualquier tamaño</option>
-                  <option value="1,10">Hotel pequeño</option>;
-                  <option value="11,20">Hotel mediano</option>;
+                  <option value="1,10">Hotel pequeño</option>;<option value="11,20">Hotel mediano</option>;
                   <option value="21,999">Hotel grande</option>;
                 </select>
               </div>
-              
             </form>
           </div>
         </div>

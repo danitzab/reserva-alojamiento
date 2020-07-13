@@ -29,10 +29,10 @@ class Header extends Component {
               <div className="col-12">
                 <h4 className="header-title">Hoteles</h4>
               </div>
-            </div>
+            </div>            
             <div className="row">
               <div className="col-12">
-                <span>{`Desde ${this.state.startDate}, hasta ${this.state.endDate} `}</span>
+                <span>Desde el <strong>{moment(this.state.startDate).format('dddd, D [de] MMMM [de] YYYY')}</strong>, hasta el <strong>{moment(this.state.endDate).format('dddd, D [de] MMMM [de] YYYY')}</strong></span>
               </div>
             </div>
           </div>
