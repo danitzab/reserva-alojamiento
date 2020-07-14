@@ -33,21 +33,13 @@ input[type='date']::-webkit-calendar-picker-indicator {
   color: #DBDBDB;
 }
 
-.header {
-  height: 40px;
-  margin-top: 17px;
-}
-
-.header-title{
-  margin-top: 30px;
-}
 .text-white {
   height: 170px;
-}
-
-/* .text-reset {
-  color: #fff;
 } */
+
+.text-reset {
+  color: #fff;
+}
 
 /* .center {
   padding-right: 81px;

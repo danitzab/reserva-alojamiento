@@ -5,8 +5,8 @@ class Header extends Component {
     super(props);
 
     this.state = {
-      startDate: '',
-      endDate: '',
+      startDate: new Date(),
+      endDate: new Date().valueOf() + 86400000, // 1 day
     };
   }
 
@@ -27,28 +27,24 @@ class Header extends Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-12">
-                <h4 className="header-title">Hoteles</h4>
+                <h4 className="mt-4 pl-2">Hoteles</h4>
               </div>
             </div>
-            {this.state.startDate && (
-              <div className="row">
-                <div className="col-12">
-                  <span>
-                    Desde el <strong>{moment(this.state.startDate).format('dddd, D [de] MMMM [de] YYYY')}</strong>
-                  </span>
-                  {this.state.endDate && (
-                    <span>
-                      , hasta el <strong>{moment(this.state.endDate).format('dddd, D [de] MMMM [de] YYYY')}</strong>
-                    </span>
-                  )}
-                </div>
+            <div className="row">
+              <div className="col-12">
+                <span className="pl-2">
+                  Desde el <strong>{moment(this.state.startDate).format('dddd, D [de] MMMM [de] YYYY')}</strong>
+                </span>
+                <span>
+                  , hasta el <strong>{moment(this.state.endDate).format('dddd, D [de] MMMM [de] YYYY')}</strong>
+                </span>
               </div>
-            )}
+            </div>
           </div>
           <br />
         </div>
         <div className="bg-primary">
-          <Filter handleFilter={this.handleFilter} />
+          <Filter handleFilter={this.handleFilter} startDate={this.state.startDate} endDate={this.state.endDate} />
         </div>
       </div>
     );

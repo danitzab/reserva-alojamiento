@@ -7,8 +7,8 @@ class Filter extends Component {
       countries: this.getOptions('country'),
       prices: this.getOptions('price'),
       rooms: this.getOptions('rooms'),
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: this.props.startDate,
+      endDate: this.props.endDate,
       country: '',
       price: 0,
       room: '',
@@ -29,7 +29,6 @@ class Filter extends Component {
   };
 
   handleGlobalChange = (e) => {
-    console.log(e.target.name, ' - ', e.target.value);
     this.setState({ [e.target.name]: e.target.value }, this.handleFilter);
   };
 
@@ -43,8 +42,8 @@ class Filter extends Component {
 
   handleFilter = () => {
     this.props.handleFilter({
-      startDate: this.state.startDate ? new Date(`${this.state.startDate}T00:00:00`) : null,
-      endDate: this.state.endDate ? new Date(`${this.state.endDate}T00:00:00`) : null,
+      startDate: this.state.startDate,
+      endDate: this.state.endDate,
       country: this.state.country,
       price: parseInt(this.state.price, 10),
       room: this.state.room,
@@ -56,7 +55,7 @@ class Filter extends Component {
 
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-primary">
-        <div className="container-fluid header">
+        <div className="container-fluid ">
           <button
             className="navbar-toggler"
             type="button"
@@ -69,29 +68,34 @@ class Filter extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo01">
-            <form className="form-inline my-sm-2">
-              <div className="input-group mb-3 mr-sm-5 my-0">
-                <div className="input-group-prepend">
+            <form className="form-inline">
+              <div className="input-group mr-sm-5 my-2">
+                <div className="input-group">
                   <input
                     type="date"
-                    className="form-control mr-sm-5 my-1"
+                    className="form-control"
                     id="startDate"
                     name="startDate"
-                    value={moment(this.state.startDate).format("YYYY-MM-DD")}
+                    value={moment(this.state.startDate).format('YYYY-MM-DD')}
                     onChange={this.handleGlobalChange}
                   />
                 </div>
               </div>
-
-              <div className="input-group mb-3 mr-sm-5 my-0">
-                <div className="input-group-prepend">
-                  <input type="date" className="form-control mr-sm-5 my-1" id="endDate" name="endDate" value={moment(this.state.endDate).format("YYYY-MM-DD")} onChange={this.handleGlobalChange} />
+              <div className="input-group mr-sm-5 my-2">
+                <div className="input-group">
+                  <input
+                    type="date"
+                    className="form-control"
+                    id="endDate"
+                    name="endDate"
+                    value={moment(this.state.endDate).format('YYYY-MM-DD')}
+                    onChange={this.handleGlobalChange}
+                  />
                 </div>
               </div>
-
-              <div className="input-group mb-3 mr-sm-5 my-0">
-                <div className="input-group-prepend">
-                  <label className="input-group-text icon-filter">
+              <div className="input-group mr-sm-5 my-2 border rounded">
+                <div className="input-group-prepend bg-transparent">
+                  <label className="input-group-text bg-white  border-0 rounded-left" id="basic-addon1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       version="1.1"
@@ -105,7 +109,7 @@ class Filter extends Component {
                   </label>
                 </div>
                 <select
-                  className="custom-select icon-filter1 mr-sm-5 my-0"
+                  className="custom-select form-control border-0 rounded-right"
                   id="country"
                   name="country"
                   onChange={this.handleGlobalChange}
@@ -117,10 +121,9 @@ class Filter extends Component {
                   ))}
                 </select>
               </div>
-
-              <div className="input-group mb-3 mr-sm-5 my-0">
-                <div className="input-group-prepend">
-                  <label className="input-group-text icon-filter">
+              <div className="input-group mr-sm-5 my-2 border rounded">
+                <div className="input-group-prepend bg-transparent">
+                  <label className="input-group-text bg-white  border-0 rounded-left" id="basic-addon1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       version="1.1"
@@ -133,7 +136,12 @@ class Filter extends Component {
                     </svg>
                   </label>
                 </div>
-                <select className="custom-select icon-filter1 mr-sm-5 my-0" id="price" name="price" onChange={this.handleGlobalChange}>
+                <select
+                  className="custom-select mr-sm my-0 form-control border-0 rounded-right"
+                  id="price"
+                  name="price"
+                  onChange={this.handleGlobalChange}
+                >
                   <option value="0">Cualquier precio</option>
                   <option value="1">$</option>
                   <option value="2">$$</option>
@@ -142,9 +150,9 @@ class Filter extends Component {
                 </select>
               </div>
 
-              <div className="input-group mb-3 mr-sm-5 my-0">
-                <div className="input-group-prepend">
-                  <label className="input-group-text icon-filter">
+              <div className="input-group mr-sm-5 my-2 border rounded">
+                <div className="input-group-prepend bg-transparent">
+                  <label className="input-group-text bg-white  border-0 rounded-left">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       version="1.1"
@@ -157,7 +165,12 @@ class Filter extends Component {
                     </svg>
                   </label>
                 </div>
-                <select className="custom-select icon-filter1 mr-sm-5 my-0" id="room" name="room" onChange={this.handleGlobalChange}>
+                <select
+                  className="custom-select mr-sm my-0 form-control border-0 rounded-right"
+                  id="room"
+                  name="room"
+                  onChange={this.handleGlobalChange}
+                >
                   <option value="">Cualquier tamaño</option>
                   <option value="1,10">Hotel pequeño</option>
                   <option value="11,20">Hotel mediano</option>

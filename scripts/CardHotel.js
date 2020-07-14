@@ -18,6 +18,8 @@ const CardHotel = ({ obj }) => (
         </div>
       </div>
     </div>
-    <button type="button" className="btn bg-info btn-lg btn-block font-weight-bold text-light">Reservar</button>
+    <button type="button" className="btn bg-info btn-lg btn-block font-weight-bold text-light">
+      Reservar
+    </button>
   </div>
 );

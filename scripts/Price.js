@@ -28,5 +28,3 @@ class Price extends Component {
     return <div className="icon-price">{this.createPrice()}</div>;
   }
 }
-
-// const Price = ({}) => <div className="icon-price">$$<span style={{"color": "#57B4F2"}}>$$</span> </div>;
