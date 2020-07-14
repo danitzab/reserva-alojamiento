@@ -45,6 +45,10 @@ input[type='date']::-webkit-calendar-picker-indicator {
   height: 170px;
 }
 
+/* .text-reset {
+  color: #fff;
+} */
+
 /* .center {
   padding-right: 81px;
   padding-left: 81px;

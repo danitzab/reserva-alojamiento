@@ -7,13 +7,12 @@ class Filter extends Component {
       countries: this.getOptions('country'),
       prices: this.getOptions('price'),
       rooms: this.getOptions('rooms'),
-      startDate: '',
-      endDate: '',
+      startDate: new Date(),
+      endDate: new Date(),
       country: '',
       price: 0,
       room: '',
     };
-    console.log(this.state.dateStart);
     this.handleGlobalChange = this.handleGlobalChange.bind(this);
   }
 
@@ -35,17 +34,17 @@ class Filter extends Component {
   };
 
   /**
-   * Método para filtrar: 
+   * Método para manejar el filtro:
    * 1.convertir el startDate y el endDate de string a fecha.
-   * 2.Filtar las ciudades al momento de ser seleccionadas. 
+   * 2.Filtar las ciudades al momento de ser seleccionadas.
    * 3.Filtarr los precios al seleccionarlos y convertirlo por elmétodo parseInt de string a número.
    * 4.Filtar las habitaciones al ser
    */
 
   handleFilter = () => {
     this.props.handleFilter({
-      startDate: new Date(`${this.state.startDate}T00:00:00`),
-      endDate: new Date(`${this.state.endDate}T00:00:00`),
+      startDate: this.state.startDate ? new Date(`${this.state.startDate}T00:00:00`) : null,
+      endDate: this.state.endDate ? new Date(`${this.state.endDate}T00:00:00`) : null,
       country: this.state.country,
       price: parseInt(this.state.price, 10),
       room: this.state.room,
@@ -78,6 +77,7 @@ class Filter extends Component {
                     className="form-control mr-sm-5 my-1"
                     id="startDate"
                     name="startDate"
+                    value={moment(this.state.startDate).format("YYYY-MM-DD")}
                     onChange={this.handleGlobalChange}
                   />
                 </div>
@@ -85,7 +85,7 @@ class Filter extends Component {
 
               <div className="input-group mb-3 mr-sm-5 my-0">
                 <div className="input-group-prepend">
-                  <input type="date" className="form-control mr-sm-5 my-1" id="endDate" name="endDate" onChange={this.handleGlobalChange} />
+                  <input type="date" className="form-control mr-sm-5 my-1" id="endDate" name="endDate" value={moment(this.state.endDate).format("YYYY-MM-DD")} onChange={this.handleGlobalChange} />
                 </div>
               </div>
 
@@ -158,9 +158,10 @@ class Filter extends Component {
                   </label>
                 </div>
                 <select className="custom-select icon-filter1 mr-sm-5 my-0" id="room" name="room" onChange={this.handleGlobalChange}>
-                  <option value="0">Cualquier tamaño</option>
-                  <option value="1,10">Hotel pequeño</option>;<option value="11,20">Hotel mediano</option>;
-                  <option value="21,999">Hotel grande</option>;
+                  <option value="">Cualquier tamaño</option>
+                  <option value="1,10">Hotel pequeño</option>
+                  <option value="11,20">Hotel mediano</option>
+                  <option value="21,999">Hotel grande</option>
                 </select>
               </div>
             </form>

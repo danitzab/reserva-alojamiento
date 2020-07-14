@@ -44,8 +44,10 @@
     <script src="./scripts/Hotels.js" type="text/babel"></script>
     <script src="./scripts/App.js" type="text/babel"></script>
     <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/4.0.2/moment-range.js"></script>
     <script>
       moment.locale('es');
+      window['moment-range'].extendMoment(moment);
     </script>
   </body>
 </html>
