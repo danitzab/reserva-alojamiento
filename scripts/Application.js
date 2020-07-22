@@ -1,6 +1,8 @@
 const Component = React.Component;
-
-class Hotels extends Component {
+/**
+ * componente Padre de la aplicación donde llamamos al Header y GridHotels.
+ */
+class Application extends Component {
   constructor(props) {
     super(props);
 

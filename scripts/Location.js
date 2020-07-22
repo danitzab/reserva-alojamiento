@@ -1,5 +1,7 @@
 const Component = React.Component;
-
+/**
+ * Componente hijo de CardHotel que renderiza el input de locatión, mostrando la ciudad y pais
+ */
 const Location = (props) => (
   <div className="input-group mb-3">
     <div className="input-group-prepend">

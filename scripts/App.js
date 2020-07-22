@@ -1,6 +1,6 @@
 ReactDOM.render(
   <React.StrictMode>
-    <Hotels />    
+    <Application />    
   </React.StrictMode>,
   document.getElementById('app')
 );

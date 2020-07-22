@@ -1,5 +1,7 @@
 const Component = React.Component;
-
+/**
+ * Componente hijo de CardHotel que renderiza el numero de habitaciones de cada hotel la cúal es leido por las props.
+ */
 const Rooms = (props) => (
   <div className="input-group mb-3">
     <div className="input-group-prepend">
@@ -12,3 +14,5 @@ const Rooms = (props) => (
     <input type="text" className="form-control" value={`${props.rooms} habitaciones`} disabled />
   </div>
 );
+
+// disabled: elemento para deshabilitar un input en html.

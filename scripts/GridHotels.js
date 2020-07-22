@@ -1,5 +1,7 @@
 const Component = React.Component;
-
+/**
+ * Componente donde se pintan cada una de las CardHotel
+ */
 class GridHotels extends Component {
   constructor(props) {
     super(props);
@@ -9,15 +11,17 @@ class GridHotels extends Component {
     };
   }
 
-  /** Ciclo de vida empleado al momento de la actualización de los filtros */
-
+  /**
+   * Método que se actualiza cada vez que cambie los props
+   * */
   componentDidUpdate(prevProps) {
+    // Validamos las props anteriores con las props actuales para evitar un bucle infinito
     if (prevProps.filter !== this.props.filter) {
       let hotelsFilter = hotelsData;
       if (this.props.filter.startDate && this.props.filter.endDate) {
+        const rangeFilter = moment.range(this.props.filter.startDate, this.props.filter.endDate);
         hotelsFilter = hotelsFilter.filter((element) => {
           const rangeHotel = moment.range(element.availabilityFrom, element.availabilityTo);
-          const rangeFilter = moment.range(this.props.filter.startDate, this.props.filter.endDate);
           return rangeHotel.contains(rangeFilter);
         });
       }
@@ -40,13 +44,15 @@ class GridHotels extends Component {
   render() {
     return (
       <div className="row row-cols-1 row-cols-md-3">
-        {this.state.hotels && this.state.hotels.length ? 
-        this.state.hotels.map((element) => (
-          <div className="col mb-4" key={element.slug}>
-            <CardHotel obj={element} />
-          </div>
-        )) : <img className="img-fluid rounded mx-auto d-block" src="./images/no-result.jpg"/>
-        }
+        {this.state.hotels && this.state.hotels.length ? (
+          this.state.hotels.map((element) => (
+            <div className="col mb-4" key={element.slug}>
+              <CardHotel obj={element} />
+            </div>
+          ))
+        ) : (
+          <img className="img-fluid rounded mx-auto d-block" src="./images/no-result.jpg" />
+        )}
       </div>
     );
   }

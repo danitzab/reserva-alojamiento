@@ -1,5 +1,7 @@
 const Component = React.Component;
-
+/**
+ * Componente padre de filter que se encarga de actualizar el estado de las fechas seleccionadas y los filtros
+ */
 class Header extends Component {
   constructor(props) {
     super(props);

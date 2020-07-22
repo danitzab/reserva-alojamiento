@@ -1,12 +1,12 @@
 const Component = React.Component;
-
+/**
+ * Componente hijo de header que se encarga de realizar los filtros atraves de la actualización del estado 
+ */
 class Filter extends Component {
   constructor(props) {
     super(props);
     this.state = {
       countries: this.getOptions('country'),
-      prices: this.getOptions('price'),
-      rooms: this.getOptions('rooms'),
       startDate: this.props.startDate,
       endDate: this.props.endDate,
       country: '',
@@ -16,6 +16,9 @@ class Filter extends Component {
     this.handleGlobalChange = this.handleGlobalChange.bind(this);
   }
 
+  /**
+   * Método para obtener la data que vamos a mostrar dentro de los select
+   */
   getOptions = (attributeName) => {
     const array = [];
     hotelsData.map((element) => {
@@ -29,6 +32,11 @@ class Filter extends Component {
   };
 
   handleGlobalChange = (e) => {
+    // e.target.name = name colocado en el HTML.
+    // e.target.value = valor actual del componente en el HTML.
+
+    // se pasa como segundo argumento el metodo handleFilter()
+    // para que se ejecute despues de haber actualizado el estado
     this.setState({ [e.target.name]: e.target.value }, this.handleFilter);
   };
 
@@ -40,7 +48,11 @@ class Filter extends Component {
    * 4.Filtar las habitaciones al ser
    */
 
+  /**
+   * Método que pasa el padre (Header) para comunicar el estado de sus propiedades
+   */
   handleFilter = () => {
+    // Invocamos la funcion que el padre donde el padre quiere recibir la data
     this.props.handleFilter({
       startDate: this.state.startDate,
       endDate: this.state.endDate,
@@ -49,6 +61,8 @@ class Filter extends Component {
       room: this.state.room,
     });
   };
+
+  //parseInt(parsea) un argumento de tipo cadena y devuelve un entero
 
   render() {
     const { search } = this.state;

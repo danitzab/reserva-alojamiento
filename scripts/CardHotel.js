@@ -1,3 +1,8 @@
+/**
+ * Componente que pinta las card y se llama en su componente padre GridHotels. Ademas este componente llama a sus componenetes
+ * hijos de Location, Rooms, Price
+ */
+
 const CardHotel = ({ obj }) => (
   <div className="card h-100">
     <img src={obj.photo} className="card-img-top" alt={obj.name} />
